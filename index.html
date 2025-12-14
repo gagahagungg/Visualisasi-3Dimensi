@@ -8,9 +8,11 @@
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.136/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.136/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- anti-cache -->
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
+  <!-- TOP BAR -->
   <div id="toolbar">
     <div class="brand">
       <div class="brand-title">Visualisasi Bangunan 3D Kelurahan Terban</div>
@@ -23,6 +25,7 @@
     </div>
   </div>
 
+  <!-- PANEL SIMULASI WAKTU -->
   <div id="timePanel" class="panel">
     <div class="panel-header">
       <div>
@@ -98,6 +101,7 @@
 
   <div id="cesiumContainer"></div>
 
-  <script type="module" src="app.js"></script>
+  <!-- anti-cache -->
+  <script type="module" src="app.js?v=4"></script>
 </body>
 </html>
