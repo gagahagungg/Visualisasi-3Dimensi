@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Visualisasi Bangunan 3D Kelurahan Terban</title>
+
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.136/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.136/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="toolbar">
+    <div class="brand">
+      <div class="brand-title">Visualisasi Bangunan 3D Kelurahan Terban</div>
+    </div>
+
+    <div class="toolbar-buttons">
+      <button id="btnToggleMode" class="btn btn-primary">Ubah ke 2D</button>
+      <button id="btnZoomWorld" class="btn">Zoom ke Dunia</button>
+      <button id="btnZoomBuildings" class="btn">Zoom ke Bangunan</button>
+    </div>
+  </div>
+
+  <div id="timePanel" class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title">Simulasi Waktu</div>
+        <div class="panel-subtitle">Pencahayaan matahari (Indonesia)</div>
+      </div>
+    </div>
+
+    <div class="panel-grid">
+      <div class="field">
+        <label>Musim</label>
+        <select id="seasonSelect">
+          <option value="hujan">Musim Hujan (contoh Jan)</option>
+          <option value="peralihan1">Peralihan 1 (contoh Apr)</option>
+          <option value="kemarau" selected>Musim Kemarau (contoh Aug)</option>
+          <option value="peralihan2">Peralihan 2 (contoh Oct)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Zona</label>
+        <select id="tzSelect">
+          <option value="7" selected>WIB (UTC+7)</option>
+          <option value="8">WITA (UTC+8)</option>
+          <option value="9">WIT (UTC+9)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Tanggal</label>
+        <input id="dateInput" type="date" />
+      </div>
+
+      <div class="field">
+        <label>Mulai</label>
+        <input id="startTime" type="time" value="06:00" />
+      </div>
+
+      <div class="field">
+        <label>Selesai</label>
+        <input id="endTime" type="time" value="18:00" />
+      </div>
+
+      <div class="field">
+        <label>Kecepatan</label>
+        <select id="speedSelect">
+          <option value="60">1 dtk = 1 menit (×60)</option>
+          <option value="300" selected>1 dtk = 5 menit (×300)</option>
+          <option value="600">1 dtk = 10 menit (×600)</option>
+          <option value="1800">1 dtk = 30 menit (×1800)</option>
+        </select>
+      </div>
+
+      <div class="field checkbox-row">
+        <label class="checkbox">
+          <input id="shadowToggle" type="checkbox" />
+          <span>Bayangan (shadows)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="panel-actions">
+      <button id="btnPlaySim" class="btn btn-primary">Play</button>
+      <button id="btnPauseSim" class="btn">Pause</button>
+      <button id="btnStopSim" class="btn btn-ghost">Stop</button>
+    </div>
+
+    <div class="panel-footer">
+      <span class="muted">Waktu simulasi</span>
+      <span id="simNow" class="mono">-</span>
+    </div>
+  </div>
+
+  <div id="cesiumContainer"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

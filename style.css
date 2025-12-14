@@ -1,0 +1,305 @@
+:root{
+  --bg: #0b1220;
+  --card: rgba(255,255,255,0.86);
+  --card-strong: rgba(255,255,255,0.92);
+  --border: rgba(15,23,42,0.12);
+  --text: #0f172a;
+  --muted: rgba(15,23,42,0.65);
+  --shadow: 0 14px 40px rgba(2,6,23,0.22);
+  --shadow-soft: 0 10px 26px rgba(2,6,23,0.18);
+  --radius: 16px;
+  --accent: #2563eb;
+  --accent-2: #22c55e;
+
+  --pad: 12px; /* padding umum */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+}
+
+#cesiumContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   TOP BAR (desktop default)
+   ========================= */
+#toolbar{
+  position: absolute;
+  top: calc(var(--pad) + env(safe-area-inset-top));
+  left: calc(var(--pad) + env(safe-area-inset-left));
+  right: auto;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+
+  width: fit-content;
+  max-width: min(calc(100% - 380px), 900px); /* sisakan ruang kanan utk widget Cesium */
+}
+
+.brand-title{
+  font-weight: 800;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+.toolbar-buttons{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  appearance: none;
+  border: 1px solid rgba(15,23,42,0.18);
+  background: rgba(255,255,255,0.75);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform .06s ease, background .15s ease, border-color .15s ease;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.10);
+  min-height: 40px; /* enak disentuh */
+}
+.btn:hover{
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(15,23,42,0.26);
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: rgba(37,99,235,0.95);
+  border-color: rgba(37,99,235,0.9);
+  color: white;
+}
+.btn-primary:hover{ background: rgba(37,99,235,1); }
+.btn-ghost{ background: rgba(255,255,255,0.55); }
+
+/* =========================
+   Panel Simulasi (desktop)
+   ========================= */
+.panel{
+  position: absolute;
+  top: calc(84px + env(safe-area-inset-top));
+  left: calc(var(--pad) + env(safe-area-inset-left));
+  width: 320px;
+  z-index: 1000;
+
+  background: var(--card-strong);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+
+  padding: 12px;
+}
+
+.panel-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(15,23,42,0.10);
+  margin-bottom: 10px;
+}
+
+.panel-title{
+  font-weight: 800;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.panel-subtitle{
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.panel-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.field label{
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(15,23,42,0.78);
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select{
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,0.16);
+  background: rgba(255,255,255,0.85);
+  padding: 10px 10px;
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+  min-height: 40px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field input:focus,
+.field select:focus{
+  border-color: rgba(37,99,235,0.55);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+}
+
+.checkbox-row{ padding-top: 2px; }
+
+.checkbox{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  color: rgba(15,23,42,0.82);
+  font-weight: 650;
+}
+
+.checkbox input{
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-2);
+}
+
+.panel-actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.panel-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(15,23,42,0.10);
+}
+
+.muted{ color: var(--muted); font-size: 12px; font-weight: 650; }
+.mono{ font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+
+/* =========================
+   Cesium widgets (desktop)
+   ========================= */
+.cesium-viewer-toolbar{
+  top: calc(var(--pad) + env(safe-area-inset-top)) !important;
+  right: calc(var(--pad) + env(safe-area-inset-right)) !important;
+  z-index: 1300 !important;
+}
+
+/* InfoBox jangan ketutup topbar */
+.cesium-viewer-infoBoxContainer{
+  top: calc(92px + env(safe-area-inset-top)) !important;
+  right: calc(var(--pad) + env(safe-area-inset-right)) !important;
+  z-index: 1300 !important;
+}
+.cesium-infoBox{
+  max-height: calc(100% - 120px) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+.cesium-infoBox-title{ font-weight: 800 !important; }
+
+/* =========================
+   MOBILE MODE (HP)
+   - Topbar full width (wrap)
+   - Panel jadi bottom sheet
+   - Toolbar Cesium pindah ke bawah kanan
+   ========================= */
+@media (max-width: 720px){
+  #toolbar{
+    left: calc(var(--pad) + env(safe-area-inset-left));
+    right: calc(var(--pad) + env(safe-area-inset-right));
+    max-width: none;
+    width: auto;
+
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .brand-title{
+    white-space: normal;
+    line-height: 1.2;
+    font-size: 14px;
+    flex: 1 1 100%;
+  }
+
+  .toolbar-buttons{
+    width: 100%;
+  }
+
+  .toolbar-buttons .btn{
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Panel jadi bottom sheet */
+  #timePanel{
+    top: auto;
+    left: calc(var(--pad) + env(safe-area-inset-left));
+    right: calc(var(--pad) + env(safe-area-inset-right));
+    bottom: calc(76px + env(safe-area-inset-bottom)); /* sisakan ruang utk toolbar cesium bawah */
+    width: auto;
+    max-height: 42vh;
+    overflow: auto;
+  }
+
+  /* Grid panel 2 kolom kalau cukup lebar */
+  .panel-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+  .checkbox-row{
+    grid-column: 1 / -1;
+  }
+
+  /* Toolbar Cesium pindah ke bawah kanan */
+  .cesium-viewer-toolbar{
+    top: auto !important;
+    bottom: calc(var(--pad) + env(safe-area-inset-bottom)) !important;
+    right: calc(var(--pad) + env(safe-area-inset-right)) !important;
+  }
+
+  /* InfoBox: taruh di atas toolbar bawah */
+  .cesium-viewer-infoBoxContainer{
+    top: auto !important;
+    right: calc(var(--pad) + env(safe-area-inset-right)) !important;
+    bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* HP kecil banget: panel kembali 1 kolom */
+@media (max-width: 420px){
+  .panel-grid{
+    grid-template-columns: 1fr;
+  }
+}
